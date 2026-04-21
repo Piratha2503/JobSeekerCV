@@ -5,6 +5,7 @@ import com.cvmaker.Jobscorecv.Domains.Users.DTOs.RequestDTOs.PermissionRequestDT
 import com.cvmaker.Jobscorecv.Domains.Users.DTOs.RequestDTOs.PermissionUpdateDTO;
 import com.cvmaker.Jobscorecv.Domains.Users.DTOs.ResponsetDTOs.PermissionResponseDTO;
 import com.cvmaker.Jobscorecv.Domains.Users.Services.PermissionService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.data.domain.Page;
@@ -17,12 +18,13 @@ public class PermissionController {
     private final PermissionService service;
 
     @PostMapping
-    public PermissionResponseDTO create(@RequestBody PermissionRequestDTO dto){
+    public PermissionResponseDTO create(@Valid @RequestBody PermissionRequestDTO dto){
         return service.create(dto);
     }
 
     @PutMapping("/{id}")
-    public PermissionResponseDTO update(@PathVariable Long id,@RequestBody PermissionUpdateDTO dto){
+    public PermissionResponseDTO update(@Valid @PathVariable Long id,
+                                        @RequestBody PermissionUpdateDTO dto){
         return service.update(id,dto);
     }
 

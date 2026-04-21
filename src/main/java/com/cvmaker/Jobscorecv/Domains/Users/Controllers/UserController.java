@@ -4,6 +4,7 @@ import com.cvmaker.Jobscorecv.Domains.Users.DTOs.RequestDTOs.UserRequestDTO;
 import com.cvmaker.Jobscorecv.Domains.Users.DTOs.RequestDTOs.UserUpdateDTO;
 import com.cvmaker.Jobscorecv.Domains.Users.DTOs.ResponsetDTOs.UserResponseDTO;
 import com.cvmaker.Jobscorecv.Domains.Users.Services.UserService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.data.domain.Page;
@@ -16,7 +17,7 @@ public class UserController {
     private final UserService service;
 
     @PostMapping
-    public UserResponseDTO create(@RequestBody UserRequestDTO dto){
+    public UserResponseDTO create(@Valid @RequestBody UserRequestDTO dto){
         return service.create(dto);
     }
 

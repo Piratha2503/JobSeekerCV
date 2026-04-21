@@ -1,11 +1,15 @@
-
 package com.cvmaker.Jobscorecv.Domains.Users.DTOs.RequestDTOs;
 
-import lombok.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
-@Getter
-@Setter
-public class RoleRequestDTO {
-    private String name;
-    private String description;
-}
+public record RoleRequestDTO(
+
+        @NotBlank(message = "Role name is required")
+        @Size(min = 3, max = 50, message = "Role name must be between 3 and 50 characters")
+        String name,
+
+        @Size(max = 255, message = "Description cannot exceed 255 characters")
+        String description
+
+) {}

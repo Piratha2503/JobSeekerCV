@@ -49,24 +49,24 @@ public class UserServiceImpl implements UserService {
         User entity = repository.findById(id)
                 .orElseThrow(()-> new EntityNotFoundException("User not found for id:- "+id));
 
-        entity.setActive(dto.isActive());
+        entity.setActive(dto.active());
 
-        if (dto.getRole_ids_remove() != null &&
-                !dto.getRole_ids_remove().isEmpty()){
+        if (dto.role_ids_remove() != null &&
+                !dto.role_ids_remove().isEmpty()){
 
             Map<Long,Role> roleMap = entity.getRoles()
                     .stream().collect(Collectors.toMap(Role::getId,role -> role));
 
-            dto.getRole_ids_remove().forEach(roleMap::remove);
+            dto.role_ids_remove().forEach(roleMap::remove);
 
             entity.setRoles(new HashSet<>(roleMap.values()));
 
         }
 
-        if (dto.getRole_ids_add() != null &&
-                !dto.getRole_ids_add().isEmpty()){
+        if (dto.role_ids_add() != null &&
+                !dto.role_ids_add().isEmpty()){
 
-            entity.setRoles(dto.getRole_ids_add().stream()
+            entity.setRoles(dto.role_ids_add().stream()
                     .map(aLong -> role_repository
                             .findById(aLong)
                             .orElseThrow(()-> new EntityNotFoundException("Role not found for Id:- "+ aLong))

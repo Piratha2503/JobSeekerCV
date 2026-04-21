@@ -1,10 +1,10 @@
 
 package com.cvmaker.Jobscorecv.Domains.Users.Controllers;
-
 import com.cvmaker.Jobscorecv.Domains.Users.DTOs.RequestDTOs.RoleRequestDTO;
 import com.cvmaker.Jobscorecv.Domains.Users.DTOs.RequestDTOs.RoleUpdateDTO;
 import com.cvmaker.Jobscorecv.Domains.Users.DTOs.ResponsetDTOs.RoleResponseDTO;
 import com.cvmaker.Jobscorecv.Domains.Users.Services.RoleService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.data.domain.Page;
@@ -17,12 +17,12 @@ public class RoleController {
     private final RoleService service;
 
     @PostMapping
-    public RoleResponseDTO create(@RequestBody RoleRequestDTO dto){
+    public RoleResponseDTO create(@Valid @RequestBody RoleRequestDTO dto){
         return service.create(dto);
     }
 
     @PutMapping("/{id}")
-    public RoleResponseDTO update(@PathVariable Long id,@RequestBody RoleUpdateDTO dto){
+    public RoleResponseDTO update(@Valid @PathVariable Long id,@RequestBody RoleUpdateDTO dto){
         return service.update(id,dto);
     }
 

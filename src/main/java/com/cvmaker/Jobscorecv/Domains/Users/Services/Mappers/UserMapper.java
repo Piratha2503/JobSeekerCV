@@ -13,18 +13,18 @@ public class UserMapper {
 
     public static User toEntity(UserRequestDTO dto){
         return User.builder()
-                .email(dto.getEmail())
-                .password(dto.getPassword())
+                .email(dto.email())
+                .password(dto.password())
                 .build();
     }
 
     public static UserResponseDTO toResponseDTO(User entity){
-        return UserResponseDTO.builder()
-                .id(entity.getId())
-                .email(entity.getEmail())
-                .roles(entity.getRoles().stream().map(Role::getName).toList())
-                .createdAt(entity.getCreatedAt().toLocalDateTime())
-                .updatedAt(entity.getUpdatedAt().toLocalDateTime())
-                .build();
+        return new UserResponseDTO(
+                entity.getId(),
+                entity.getEmail(),
+                entity.getRoles().stream().map(Role::getName).toList(),
+                entity.getCreatedAt(),
+                entity.getUpdatedAt()
+        );
     }
 }
