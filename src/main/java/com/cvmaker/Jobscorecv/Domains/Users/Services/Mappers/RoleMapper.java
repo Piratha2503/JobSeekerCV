@@ -1,6 +1,5 @@
 
 package com.cvmaker.Jobscorecv.Domains.Users.Services.Mappers;
-
 import com.cvmaker.Jobscorecv.Domains.Users.DTOs.RequestDTOs.RoleRequestDTO;
 import com.cvmaker.Jobscorecv.Domains.Users.DTOs.RequestDTOs.RoleUpdateDTO;
 import com.cvmaker.Jobscorecv.Domains.Users.DTOs.ResponsetDTOs.RoleResponseDTO;
@@ -10,8 +9,8 @@ public class RoleMapper {
 
     public static Role toEntity(RoleRequestDTO dto){
         return Role.builder()
-                .name(dto.getName())
-                .description(dto.getDescription())
+                .name(dto.name())
+                .description(dto.description())
                 .build();
     }
 
@@ -26,7 +25,7 @@ public class RoleMapper {
     }
 
     public static void applyUpdate(Role entity, RoleUpdateDTO dto){
-        if(dto.getName()!=null) entity.setName(dto.getName());
-        if(dto.getDescription()!=null) entity.setDescription(dto.getDescription());
+        if(dto.name()!=null) entity.setName(dto.name());
+        if(dto.description()!=null) entity.setDescription(dto.description());
     }
 }

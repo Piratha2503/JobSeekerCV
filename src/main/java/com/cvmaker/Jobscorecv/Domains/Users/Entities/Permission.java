@@ -4,8 +4,6 @@ import com.cvmaker.Jobscorecv.Common.CommonUtils.DateTimeUtils;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.UUID;
-
 @Entity
 @Table(name = "permissions")
 @Getter
@@ -22,6 +20,5 @@ public class Permission extends DateTimeUtils {
     @Column(nullable = false, unique = true, length = 100)
     private String name;
 
-    @Column(length = 255)
     private String description;
 }
