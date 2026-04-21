@@ -34,8 +34,7 @@ public class GlobalExceptionHandler {
         ex.getBindingResult().getFieldErrors().forEach(error -> {
             errors.put(
                     error.getField(),
-                    error.getDefaultMessage());
-        });
+                    error.getDefaultMessage());});
 
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
