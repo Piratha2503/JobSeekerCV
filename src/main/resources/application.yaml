@@ -1,0 +1,29 @@
+server:
+  port: 7500
+  servlet:
+    context-path: /resume
+
+spring:
+  application:
+    name: Jobscorecv
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/jobscorecv_resume
+    username: postgres
+    password: root
+
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format-sql: true
+    hibernate:
+        ddl-auto: create
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    defer-datasource-initialization: true
+
+  sql:
+    init:
+      mode: always
+
+
