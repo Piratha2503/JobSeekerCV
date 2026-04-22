@@ -3,12 +3,16 @@ package com.cvmaker.Jobscorecv.Domains.Candidate.Entities;
 import com.cvmaker.Jobscorecv.Common.CommonUtils.DateTimeUtils;
 import jakarta.persistence.*;
 import lombok.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(
         name = "profiles",
         indexes = {
-                @Index(name = "idx_profiles_user_id", columnList = "user_id")
+                @Index(name = "idx_profiles_user_id", columnList = "user_id"),
+                @Index(name = "idx_profiles_email", columnList = "email"),
+                @Index(name = "idx_profiles_phone", columnList = "phone")
         }
 )
 @Getter
@@ -48,4 +52,24 @@ public class Profile extends DateTimeUtils {
 
     @Column(name = "personal_web_link")
     private String personalWebLink;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "profile_skills",
+            joinColumns = @JoinColumn(
+                    name = "profile_id",
+                    foreignKey = @ForeignKey(
+                            foreignKeyDefinition =
+                                    "FOREIGN KEY (profile_id) REFERENCES profiles(id) ON DELETE CASCADE"
+                    )
+            ),
+            inverseJoinColumns = @JoinColumn(
+                    name = "skill_id",
+                    foreignKey = @ForeignKey(
+                            foreignKeyDefinition =
+                                    "FOREIGN KEY (skill_id) REFERENCES skills(id) ON DELETE CASCADE"
+                    )
+            )
+    )
+    private Set<Skill> skills = new HashSet<>();
 }

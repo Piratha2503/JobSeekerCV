@@ -1,6 +1,8 @@
 package com.cvmaker.Jobscorecv.Domains.Candidate.Services.Impl;
 
 import com.cvmaker.Jobscorecv.Common.APIResponse.PaginatedResponse;
+import com.cvmaker.Jobscorecv.Common.ExceptionHandling.CustomExceptions.DuplicateValuesException;
+import com.cvmaker.Jobscorecv.Common.ExceptionHandling.CustomExceptions.EntityNotFoundException;
 import com.cvmaker.Jobscorecv.Domains.Candidate.DTOs.RequestDTOs.ProfileCreateRequest;
 import com.cvmaker.Jobscorecv.Domains.Candidate.DTOs.RequestDTOs.ProfileUpdateRequest;
 import com.cvmaker.Jobscorecv.Domains.Candidate.DTOs.ResponsetDTOs.ProfileResponse;
@@ -30,7 +32,13 @@ public class ProfileServiceImpl implements ProfileService {
         log.info("Creating profile for userId: {}", request.userId());
 
         if(profileRepository.existsByUserId(request.userId()))
-            throw new RuntimeException("Profile already exists for user");
+            throw new DuplicateValuesException("Profile already exists for user");
+
+        if(profileRepository.existsByEmail(request.email()))
+            throw new DuplicateValuesException("Email already exists for another user");
+
+        if(profileRepository.existsByPhone(request.phone()))
+            throw new DuplicateValuesException("Phone already exists for another user");
 
         Profile profile = Profile.builder()
                 .userId(request.userId())
@@ -54,8 +62,14 @@ public class ProfileServiceImpl implements ProfileService {
 
         log.info("Updating profile id {}", id);
 
+        if(profileRepository.existsByEmailAndIdNot(request.email(),id))
+            throw new DuplicateValuesException("Email already exists for another user");
+
+        if(profileRepository.existsByPhoneAndIdNot(request.phone(),id))
+            throw new DuplicateValuesException("Phone already exists for another user");
+
         Profile profile = profileRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Profile not found"));
+                .orElseThrow(() -> new EntityNotFoundException("Profile not found id:- "+id));
 
         profile.setFullName(request.fullName());
         profile.setHeadline(request.headline());
@@ -77,7 +91,7 @@ public class ProfileServiceImpl implements ProfileService {
         log.info("Deleting profile {}", id);
 
         Profile profile = profileRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Profile not found"));
+                .orElseThrow(() -> new EntityNotFoundException("Profile not found id:- "+id));
 
         profileRepository.delete(profile);
     }
@@ -88,7 +102,7 @@ public class ProfileServiceImpl implements ProfileService {
         log.info("Fetching profile {}", id);
 
         Profile profile = profileRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Profile not found"));
+                .orElseThrow(() -> new EntityNotFoundException("Profile not found id:- "+id));
 
         return ProfileResponse.map(profile);
     }
