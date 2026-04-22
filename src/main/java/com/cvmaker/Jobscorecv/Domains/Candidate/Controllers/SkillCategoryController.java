@@ -2,7 +2,7 @@ package com.cvmaker.Jobscorecv.Domains.Candidate.Controllers;
 
 import com.cvmaker.Jobscorecv.Common.APIResponse.APIContentResponse;
 import com.cvmaker.Jobscorecv.Common.APIResponse.PaginatedResponse;
-import com.cvmaker.Jobscorecv.Common.APIResponse.ResponseStatus;
+import com.cvmaker.Jobscorecv.Common.Enums.ResponseStatus;
 import com.cvmaker.Jobscorecv.Domains.Candidate.DTOs.RequestDTOs.SkillCategoryCreateRequest;
 import com.cvmaker.Jobscorecv.Domains.Candidate.DTOs.RequestDTOs.SkillCategoryUpdateRequest;
 import com.cvmaker.Jobscorecv.Domains.Candidate.DTOs.ResponsetDTOs.SkillCategoryResponse;

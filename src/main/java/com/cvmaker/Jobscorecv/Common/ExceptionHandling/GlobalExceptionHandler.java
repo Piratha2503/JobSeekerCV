@@ -1,7 +1,7 @@
 package com.cvmaker.Jobscorecv.Common.ExceptionHandling;
 
 import com.cvmaker.Jobscorecv.Common.APIResponse.ApiBaseResponses;
-import com.cvmaker.Jobscorecv.Common.APIResponse.ResponseStatus;
+import com.cvmaker.Jobscorecv.Common.Enums.ResponseStatus;
 import com.cvmaker.Jobscorecv.Common.ExceptionHandling.CustomExceptions.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

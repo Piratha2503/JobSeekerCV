@@ -1,4 +1,4 @@
-package com.cvmaker.Jobscorecv.Common.APIResponse;
+package com.cvmaker.Jobscorecv.Common.Enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
