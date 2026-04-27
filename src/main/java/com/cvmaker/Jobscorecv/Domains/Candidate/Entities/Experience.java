@@ -27,8 +27,9 @@ public class Experience extends DateTimeUtils {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "profile_id", nullable = false)
-    private Long profileId;
+    @ManyToOne
+    @JoinColumn(name = "profile_id")
+    private Profile profile;
 
     @Column(name = "job_title", nullable = false, length = 100)
     private String jobTitle;

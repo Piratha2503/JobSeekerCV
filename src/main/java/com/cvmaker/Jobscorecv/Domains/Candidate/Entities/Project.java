@@ -26,8 +26,9 @@ public class Project extends DateTimeUtils {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "profile_id", nullable = false)
-    private Long profileId;
+    @ManyToOne
+    @JoinColumn(name = "profile_id")
+    private Profile profile;
 
     @Column(name = "project_name", nullable = false, length = 150)
     private String projectName;
