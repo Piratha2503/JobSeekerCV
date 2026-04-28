@@ -36,7 +36,6 @@ public record ProjectCreateRequest(
 
     public static Project toEntity(ProjectCreateRequest request){
         return Project.builder()
-                .profileId(request.profileId())
                 .projectName(request.projectName())
                 .techStack(request.techStack())
                 .githubLink(request.githubLink())

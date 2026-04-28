@@ -47,7 +47,6 @@ public record EducationCreateRequest(
 
     public static Education toEntity(EducationCreateRequest request){
         return Education.builder()
-                .profileId(request.profileId())
                 .degree(request.degree())
                 .fieldOfStudy(request.fieldOfStudy())
                 .institutionName(request.institutionName())

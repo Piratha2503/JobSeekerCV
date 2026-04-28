@@ -6,12 +6,15 @@ import com.cvmaker.Jobscorecv.Domains.Candidate.DTOs.RequestDTOs.ExperienceCreat
 import com.cvmaker.Jobscorecv.Domains.Candidate.DTOs.RequestDTOs.ExperienceUpdateRequest;
 import com.cvmaker.Jobscorecv.Domains.Candidate.DTOs.ResponsetDTOs.ExperienceResponse;
 import com.cvmaker.Jobscorecv.Domains.Candidate.Entities.Experience;
+import com.cvmaker.Jobscorecv.Domains.Candidate.Entities.Profile;
 import com.cvmaker.Jobscorecv.Domains.Candidate.Repositories.ExperienceRepository;
+import com.cvmaker.Jobscorecv.Domains.Candidate.Repositories.ProfileRepository;
 import com.cvmaker.Jobscorecv.Domains.Candidate.Services.ExperienceService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -21,15 +24,23 @@ import java.util.List;
 public class ExperienceServiceImpl implements ExperienceService {
 
     private final ExperienceRepository repository;
+    private final ProfileRepository profileRepository;
 
     @Override
+    @Transactional
     public ExperienceResponse createExperience(ExperienceCreateRequest request) {
 
         log.info("Creating experience for profile {}", request.profileId());
 
-        Experience experience = repository.save(ExperienceCreateRequest.toEntity(request));
+        Experience experience = ExperienceCreateRequest.toEntity(request);
 
-        return ExperienceResponse.map(experience);
+        Profile profile = profileRepository.getReferenceById(request.profileId());
+
+        experience.setProfile(profile);
+
+        Experience result = repository.save(experience);
+
+        return ExperienceResponse.map(result);
     }
 
     @Override

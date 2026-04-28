@@ -6,7 +6,9 @@ import com.cvmaker.Jobscorecv.Domains.Candidate.DTOs.RequestDTOs.EducationCreate
 import com.cvmaker.Jobscorecv.Domains.Candidate.DTOs.RequestDTOs.EducationUpdateRequest;
 import com.cvmaker.Jobscorecv.Domains.Candidate.DTOs.ResponsetDTOs.EducationResponse;
 import com.cvmaker.Jobscorecv.Domains.Candidate.Entities.Education;
+import com.cvmaker.Jobscorecv.Domains.Candidate.Entities.Profile;
 import com.cvmaker.Jobscorecv.Domains.Candidate.Repositories.EducationRepository;
+import com.cvmaker.Jobscorecv.Domains.Candidate.Repositories.ProfileRepository;
 import com.cvmaker.Jobscorecv.Domains.Candidate.Services.EducationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,8 +17,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -24,17 +28,23 @@ import java.util.List;
 public class EducationServiceImpl implements EducationService {
 
     private final EducationRepository repository;
+    private final ProfileRepository profileRepository;
 
     @Override
+    @Transactional
     public EducationResponse createEducation(EducationCreateRequest request) {
 
         log.info("Creating education for profile {}", request.profileId());
 
-        Education education = repository.save(
-                EducationCreateRequest.toEntity(request)
-        );
+        Education education = EducationCreateRequest.toEntity(request);
 
-        return EducationResponse.map(education);
+        Profile profile = profileRepository.getReferenceById(request.profileId());
+
+        education.setProfile(profile);
+
+        Education entity = repository.save(education);
+
+        return EducationResponse.map(entity);
     }
 
     @Override

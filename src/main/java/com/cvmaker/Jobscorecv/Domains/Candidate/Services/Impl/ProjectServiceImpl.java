@@ -5,7 +5,9 @@ import com.cvmaker.Jobscorecv.Common.ExceptionHandling.CustomExceptions.EntityNo
 import com.cvmaker.Jobscorecv.Domains.Candidate.DTOs.RequestDTOs.ProjectCreateRequest;
 import com.cvmaker.Jobscorecv.Domains.Candidate.DTOs.RequestDTOs.ProjectUpdateRequest;
 import com.cvmaker.Jobscorecv.Domains.Candidate.DTOs.ResponsetDTOs.ProjectResponse;
+import com.cvmaker.Jobscorecv.Domains.Candidate.Entities.Profile;
 import com.cvmaker.Jobscorecv.Domains.Candidate.Entities.Project;
+import com.cvmaker.Jobscorecv.Domains.Candidate.Repositories.ProfileRepository;
 import com.cvmaker.Jobscorecv.Domains.Candidate.Repositories.ProjectRepository;
 import com.cvmaker.Jobscorecv.Domains.Candidate.Services.ProjectService;
 import lombok.RequiredArgsConstructor;
@@ -23,15 +25,22 @@ import java.util.List;
 public class ProjectServiceImpl implements ProjectService {
 
     private final ProjectRepository repository;
+    private final ProfileRepository profileRepository;
 
     @Override
     public ProjectResponse createProject(ProjectCreateRequest request) {
 
         log.info("Creating project for profile {}", request.profileId());
 
-        Project project = repository.save(ProjectCreateRequest.toEntity(request));
+        Profile profile = profileRepository.getReferenceById(request.profileId());
 
-        return ProjectResponse.map(project);
+        Project entity = ProjectCreateRequest.toEntity(request);
+
+        entity.setProfile(profile);
+
+        Project result = repository.save(entity);
+
+        return ProjectResponse.map(result);
     }
 
     @Override

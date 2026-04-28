@@ -23,7 +23,7 @@ public record ProjectResponse(
     public static ProjectResponse map(Project project){
         return new ProjectResponse(
                 project.getId(),
-                project.getProfileId(),
+                project.getProfile().getId(),
                 project.getProjectName(),
                 project.getTechStack(),
                 project.getGithubLink(),
