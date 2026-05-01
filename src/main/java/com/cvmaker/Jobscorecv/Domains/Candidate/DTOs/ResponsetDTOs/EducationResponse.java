@@ -1,7 +1,6 @@
 package com.cvmaker.Jobscorecv.Domains.Candidate.DTOs.ResponsetDTOs;
 
 import com.cvmaker.Jobscorecv.Domains.Candidate.Entities.Education;
-
 import java.time.LocalDate;
 
 public record EducationResponse(
@@ -25,7 +24,7 @@ public record EducationResponse(
     public static EducationResponse map(Education education){
         return new EducationResponse(
                 education.getId(),
-                education.getProfileId(),
+                education.getProfile().getId(),
                 education.getDegree(),
                 education.getFieldOfStudy(),
                 education.getInstitutionName(),
