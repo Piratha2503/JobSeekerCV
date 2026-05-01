@@ -27,16 +27,8 @@ public class CertificationServiceImpl implements CertificationService {
 
         Profile profile = profileRepository.getReferenceById(request.profileId());
 
-        Certification entity = Certification.builder()
-                .profile(profile)
-                .certificationName(request.certificationName())
-                .issuingOrganization(request.issuingOrganization())
-                .credentialId(request.credentialId())
-                .issuedDate(request.issuedDate())
-                .expiryDate(request.expiryDate())
-                .doesNotExpire(request.doesNotExpire())
-                .orderIndex(request.orderIndex())
-                .build();
+        Certification entity = CertificationCreateRequest.toEntity(request);
+        entity.setProfile(profile);
 
         return CertificationResponse.map(repository.save(entity));
     }
@@ -47,13 +39,7 @@ public class CertificationServiceImpl implements CertificationService {
         Certification entity = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Certification not found"));
 
-        entity.setCertificationName(request.certificationName());
-        entity.setIssuingOrganization(request.issuingOrganization());
-        entity.setCredentialId(request.credentialId());
-        entity.setIssuedDate(request.issuedDate());
-        entity.setExpiryDate(request.expiryDate());
-        entity.setDoesNotExpire(request.doesNotExpire());
-        entity.setOrderIndex(request.orderIndex());
+        CertificationUpdateRequest.updateEntity(entity,request);
 
         return CertificationResponse.map(repository.save(entity));
     }
