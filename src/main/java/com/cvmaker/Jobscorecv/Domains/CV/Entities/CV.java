@@ -41,15 +41,15 @@ public class CV extends DateTimeUtils {
     @Column(name = "is_public", nullable = false)
     private boolean isPublic = false;
 
-    @OneToMany(mappedBy = "cv")
+    @OneToMany(mappedBy = "cv",cascade = CascadeType.ALL, orphanRemoval = true)
     private List<SelectedExperience> selectedExperiences;
-    @OneToMany(mappedBy = "cv")
+    @OneToMany(mappedBy = "cv",cascade = CascadeType.ALL, orphanRemoval = true)
     private List<SelectedEducation> selectedEducations;
-    @OneToMany(mappedBy = "cv")
+    @OneToMany(mappedBy = "cv",cascade = CascadeType.ALL, orphanRemoval = true)
     private List<SelectedCertification> selectedCertifications;
-    @OneToMany(mappedBy = "cv")
+    @OneToMany(mappedBy = "cv",cascade = CascadeType.ALL, orphanRemoval = true)
     private List<SelectedSkill> selectedSkills;
-    @OneToMany(mappedBy = "cv")
+    @OneToMany(mappedBy = "cv",cascade = CascadeType.ALL, orphanRemoval = true)
     private List<SelectedProject> selectedProjects;
 
     public enum TemplateType {
