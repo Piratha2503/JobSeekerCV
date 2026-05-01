@@ -3,6 +3,7 @@ package com.cvmaker.Jobscorecv.Domains.Candidate.Entities;
 import com.cvmaker.Jobscorecv.Common.CommonUtils.DateTimeUtils;
 import jakarta.persistence.*;
 import lombok.*;
+
 import java.time.LocalDate;
 
 @Entity
