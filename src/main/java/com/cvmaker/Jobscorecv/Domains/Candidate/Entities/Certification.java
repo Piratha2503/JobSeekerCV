@@ -24,32 +24,26 @@ public class Certification {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "profile_id")
+    @JoinColumn(name = "profile_id", nullable = false)
     private Profile profile;
 
-    @Column(name = "certificate", nullable = false, length = 150)
-    private String certificate;
+    @Column(name = "certification_name", nullable = false, length = 150)
+    private String certificationName;
 
-    @Column(name = "field_of_study", nullable = false, length = 150)
-    private String fieldOfStudy;
+    @Column(name = "issuing_organization", nullable = false, length = 150)
+    private String issuingOrganization;
 
-    @Column(name = "institution_name", nullable = false, length = 150)
-    private String institutionName;
+    @Column(name = "credential_id", length = 100)
+    private String credentialId;
 
-    @Column(name = "location", length = 150)
-    private String location;
+    @Column(name = "issued_date")
+    private LocalDate issuedDate;
 
-    @Column(name = "start_date", nullable = false)
-    private LocalDate startDate;
+    @Column(name = "expiry_date")
+    private LocalDate expiryDate;
 
-    @Column(name = "end_date")
-    private LocalDate endDate;
-
-    @Column(name = "is_current", nullable = false)
-    private boolean isCurrent = false;
-
-    @Column(name = "description", columnDefinition = "TEXT")
-    private String description;
+    @Column(name = "does_not_expire", nullable = false)
+    private boolean doesNotExpire = false;
 
     @Column(name = "order_index", nullable = false)
     private Integer orderIndex;

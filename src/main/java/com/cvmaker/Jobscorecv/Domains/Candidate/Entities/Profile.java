@@ -77,8 +77,11 @@ public class Profile extends DateTimeUtils {
     private Set<Experience> experiences = new HashSet<>();
 
     @OneToMany(mappedBy = "profile",cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Education> educations = new HashSet<>();;
+    private Set<Education> educations = new HashSet<>();
+
+    @OneToMany(mappedBy = "certification",cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Certification> certifications = new HashSet<>();
 
     @OneToMany(mappedBy = "profile",cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Project> projects = new HashSet<>();;
+    private Set<Project> projects = new HashSet<>();
 }
