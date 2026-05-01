@@ -46,6 +46,8 @@ public class CV extends DateTimeUtils {
     @OneToMany(mappedBy = "cv")
     private List<SelectedEducation> selectedEducations;
     @OneToMany(mappedBy = "cv")
+    private List<SelectedCertification> selectedCertifications;
+    @OneToMany(mappedBy = "cv")
     private List<SelectedSkill> selectedSkills;
     @OneToMany(mappedBy = "cv")
     private List<SelectedProject> selectedProjects;
