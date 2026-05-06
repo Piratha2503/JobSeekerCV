@@ -76,7 +76,8 @@ public class ProfileController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<APIContentResponse<ProfileResponse>> getProfileById(@PathVariable Long id) {
+    public ResponseEntity<APIContentResponse<ProfileResponse>>
+    getProfileById(@PathVariable Long id) {
 
         log.info("API get profile {}", id);
         ProfileResponse response = profileService.getProfileById(id);

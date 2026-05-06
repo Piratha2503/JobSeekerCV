@@ -33,7 +33,6 @@ public record CVResponse(
                 cv.getSummary(),
                 cv.isPublic(),
 
-                // 🔥 flatten child entities → IDs மட்டும் return
                 cv.getSelectedExperiences()
                         .stream()
                         .map(SelectedExperience::getSelectedExperienceId)

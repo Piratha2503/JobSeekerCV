@@ -18,4 +18,6 @@ public interface CertificationService {
     CertificationResponse getCertificationById(Long id);
 
     List<CertificationResponse> getAllCertifications(PaginatedResponse.Pagination pagination);
+
+    boolean existsById(Long certificationId);
 }

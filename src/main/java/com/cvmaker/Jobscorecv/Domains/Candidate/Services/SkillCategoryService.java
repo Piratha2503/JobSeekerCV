@@ -17,4 +17,6 @@ public interface SkillCategoryService {
     SkillCategoryResponse getSkillCategoryById(Long id);
 
     List<SkillCategoryResponse> getAllSkillCategories(PaginatedResponse.Pagination pagination);
+
+    boolean existsById(Long categoryId);
 }

@@ -18,4 +18,6 @@ public interface ProjectService {
     ProjectResponse getProjectById(Long id);
 
     List<ProjectResponse> getAllProjects(PaginatedResponse.Pagination pagination);
+
+    boolean existsById(Long projectId);
 }

@@ -45,7 +45,6 @@ public record ExperienceCreateRequest(
 
     public static Experience toEntity(ExperienceCreateRequest request){
         return Experience.builder()
-                .profileId(request.profileId())
                 .jobTitle(request.jobTitle())
                 .companyName(request.companyName())
                 .location(request.location())

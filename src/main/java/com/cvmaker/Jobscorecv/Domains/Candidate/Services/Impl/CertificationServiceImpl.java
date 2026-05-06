@@ -23,6 +23,11 @@ public class CertificationServiceImpl implements CertificationService {
     private final ProfileRepository profileRepository;
 
     @Override
+    public boolean existsById(Long certificationId) {
+        return repository.existsById(certificationId);
+    }
+
+    @Override
     public CertificationResponse createCertification(CertificationCreateRequest request) {
 
         Profile profile = profileRepository.getReferenceById(request.profileId());

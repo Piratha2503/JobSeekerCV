@@ -31,6 +31,11 @@ public class EducationServiceImpl implements EducationService {
     private final ProfileRepository profileRepository;
 
     @Override
+    public boolean existsById(Long educationId) {
+        return repository.existsById(educationId);
+    }
+
+    @Override
     @Transactional
     public EducationResponse createEducation(EducationCreateRequest request) {
 

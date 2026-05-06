@@ -27,6 +27,11 @@ public class ProfileServiceImpl implements ProfileService {
     private final ProfileRepository profileRepository;
 
     @Override
+    public boolean existsById(Long profileId) {
+        return profileRepository.existsById(profileId);
+    }
+
+    @Override
     public ProfileResponse createProfile(ProfileCreateRequest request) {
 
         log.info("Creating profile for userId: {}", request.userId());

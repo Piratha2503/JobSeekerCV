@@ -19,4 +19,6 @@ public interface ProfileService {
     ProfileResponse getProfileById(Long id);
 
     List<ProfileResponse> getAllProfiles(PaginatedResponse.Pagination pagination);
+
+    boolean existsById(Long profileId);
 }

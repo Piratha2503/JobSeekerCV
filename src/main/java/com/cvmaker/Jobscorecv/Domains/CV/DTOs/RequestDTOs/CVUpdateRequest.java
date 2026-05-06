@@ -39,8 +39,6 @@ public record CVUpdateRequest(
             cv.setPublic(request.isPublic());
         }
 
-        // 🔥 CHILD REPLACEMENT STRATEGY
-
         if(request.experienceIds() != null){
             cv.getSelectedExperiences().clear();
 

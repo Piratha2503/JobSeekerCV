@@ -22,6 +22,11 @@ public class SkillCategoryServiceImpl implements SkillCategoryService {
     private final SkillCategoryRepository repository;
 
     @Override
+    public boolean existsById(Long categoryId) {
+        return repository.existsById(categoryId);
+    }
+
+    @Override
     public SkillCategoryResponse createSkillCategory(SkillCategoryCreateRequest request) {
 
         log.info("Creating skill category {}", request.name());

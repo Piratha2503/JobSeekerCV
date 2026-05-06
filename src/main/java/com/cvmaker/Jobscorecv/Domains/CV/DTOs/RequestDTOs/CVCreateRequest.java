@@ -1,8 +1,8 @@
 package com.cvmaker.Jobscorecv.Domains.CV.DTOs.RequestDTOs;
 
 import com.cvmaker.Jobscorecv.Domains.CV.Entities.*;
-
 import java.util.List;
+
 
 public record CVCreateRequest(
         Long profileId,
@@ -18,9 +18,12 @@ public record CVCreateRequest(
         List<Long> skillIds,
         List<Long> projectIds
 ) {
+
+
+
     public static CV toEntity(CVCreateRequest request){
 
-        CV cv = CV.builder()
+        return CV.builder()
                 .profileId(request.profileId())
                 .targetRole(request.targetRole())
                 .targetIndustry(request.targetIndustry())
@@ -28,53 +31,5 @@ public record CVCreateRequest(
                 .summary(request.summary())
                 .isPublic(request.isPublic())
                 .build();
-
-        // set children
-        cv.setSelectedExperiences(
-                request.experienceIds().stream()
-                        .map(id -> SelectedExperience.builder()
-                                .cv(cv)
-                                .selectedExperienceId(id)
-                                .build())
-                        .toList()
-        );
-
-        cv.setSelectedEducations(
-                request.educationIds().stream()
-                        .map(id -> SelectedEducation.builder()
-                                .cv(cv)
-                                .selectedEducationId(id)
-                                .build())
-                        .toList()
-        );
-
-        cv.setSelectedCertifications(
-                request.certificationIds().stream()
-                        .map(id -> SelectedCertification.builder()
-                                .cv(cv)
-                                .selectedCertificationId(id)
-                                .build())
-                        .toList()
-        );
-
-        cv.setSelectedSkills(
-                request.skillIds().stream()
-                        .map(id -> SelectedSkill.builder()
-                                .cv(cv)
-                                .selectedSkillId(id)
-                                .build())
-                        .toList()
-        );
-
-        cv.setSelectedProjects(
-                request.projectIds().stream()
-                        .map(id -> SelectedProject.builder()
-                                .cv(cv)
-                                .selectedProjectId(id)
-                                .build())
-                        .toList()
-        );
-
-        return cv;
     }
 }

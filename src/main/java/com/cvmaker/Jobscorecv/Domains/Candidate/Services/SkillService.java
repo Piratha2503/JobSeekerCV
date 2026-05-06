@@ -19,4 +19,5 @@ public interface SkillService {
 
     List<SkillResponse> getAllSkills(PaginatedResponse.Pagination pagination);
 
+    boolean existsById(Long skillId);
 }

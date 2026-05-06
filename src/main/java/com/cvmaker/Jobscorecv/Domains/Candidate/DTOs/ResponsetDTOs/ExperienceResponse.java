@@ -26,7 +26,7 @@ public record ExperienceResponse(
     public static ExperienceResponse map(Experience experience){
         return new ExperienceResponse(
                 experience.getId(),
-                experience.getProfileId(),
+                experience.getProfile().getId(),
                 experience.getJobTitle(),
                 experience.getCompanyName(),
                 experience.getLocation(),

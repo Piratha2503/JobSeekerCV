@@ -18,4 +18,6 @@ public interface ExperienceService {
     ExperienceResponse getExperienceById(Long id);
 
     List<ExperienceResponse> getAllExperiences(PaginatedResponse.Pagination pagination);
+
+    boolean existsById(Long experienceId);
 }

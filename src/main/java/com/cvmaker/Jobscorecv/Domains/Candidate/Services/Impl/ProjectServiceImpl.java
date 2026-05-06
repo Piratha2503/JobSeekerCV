@@ -28,6 +28,11 @@ public class ProjectServiceImpl implements ProjectService {
     private final ProfileRepository profileRepository;
 
     @Override
+    public boolean existsById(Long projectId) {
+        return repository.existsById(projectId);
+    }
+
+    @Override
     public ProjectResponse createProject(ProjectCreateRequest request) {
 
         log.info("Creating project for profile {}", request.profileId());

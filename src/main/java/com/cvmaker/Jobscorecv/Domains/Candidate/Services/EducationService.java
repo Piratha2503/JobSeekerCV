@@ -18,4 +18,6 @@ public interface EducationService {
     EducationResponse getEducationById(Long id);
 
     List<EducationResponse> getAllEducations(PaginatedResponse.Pagination pagination);
+
+    boolean existsById(Long educationId);
 }

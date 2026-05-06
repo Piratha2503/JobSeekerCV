@@ -27,6 +27,11 @@ public class ExperienceServiceImpl implements ExperienceService {
     private final ProfileRepository profileRepository;
 
     @Override
+    public boolean existsById(Long experienceId) {
+        return repository.existsById(experienceId);
+    }
+
+    @Override
     @Transactional
     public ExperienceResponse createExperience(ExperienceCreateRequest request) {
 
