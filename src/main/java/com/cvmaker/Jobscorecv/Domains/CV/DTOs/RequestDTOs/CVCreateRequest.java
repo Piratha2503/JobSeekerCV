@@ -24,7 +24,6 @@ public record CVCreateRequest(
     public static CV toEntity(CVCreateRequest request){
 
         return CV.builder()
-                .profileId(request.profileId())
                 .targetRole(request.targetRole())
                 .targetIndustry(request.targetIndustry())
                 .templateType(request.templateType())

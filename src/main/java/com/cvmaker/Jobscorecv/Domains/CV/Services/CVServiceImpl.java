@@ -85,6 +85,11 @@ public class CVServiceImpl implements CVService {
 
     private void copyCVProperties(CV cv, CVCreateRequest request) {
 
+        if (!candidateIntegration.validateProfileExists(request.profileId()))
+            throw new EntityNotFoundException("Experience Not Found for ID "+request.profileId());
+
+        cv.setProfileId(request.profileId());
+
         cv.setSelectedExperiences(
                 request.experienceIds().stream()
                         .map(id -> {

@@ -21,7 +21,6 @@ public class CandidateIntegration {
         return profileService.existsById(profileId);
     }
 
-
     public boolean validateExperienceExists(Long experienceId) {
         return experienceService.existsById(experienceId);
     }
@@ -30,16 +29,12 @@ public class CandidateIntegration {
         return educationService.existsById(educationId);
     }
 
-
     public boolean validateCertificationExists(Long certificationId) {
-        return certificationService.existsById(certificationId);
-    }
-
+        return certificationService.existsById(certificationId);}
 
     public boolean validateProjectExists(Long projectId) {
         return projectService.existsById(projectId);
     }
-
 
     public boolean validateSkillExists(Long skillId) {
         return skillService.existsById(skillId);
